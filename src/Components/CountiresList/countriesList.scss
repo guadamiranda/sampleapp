@@ -1,0 +1,23 @@
+
+.countriesListContainer{
+    align-items: center;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 40px);
+    justify-content: center;
+    width: 100vw;
+
+    &__listContainer{
+        min-height: 500px;
+        width: 900px;
+    }
+
+    &__listHeader{
+        background-color: #009189;
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+    }
+}
