@@ -12,7 +12,7 @@ const ApiSection = () => {
             <br/>
             <span>🔎 <b>Buscar</b> un país en particular</span>
             <br/>
-            <Link className='apiSectionContainer__linkStyle'><Button nombre='Buscador de Paises' icono={<BsSearchHeart/>}></Button></Link>
+            <Link className='apiSectionContainer__linkStyle' to='/countrieSearch'><Button nombre='Buscador de Paises' icono={<BsSearchHeart/>}></Button></Link>
         </div>
     )
 }

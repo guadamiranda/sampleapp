@@ -1,3 +1,4 @@
+import CountriesSearch from './Components/CountiresSearch/CountriesSearch';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CountriesList from './Components/CountiresList/CountriesList';
 import HooksSection from './Components/HooksSection/HooksSection';
@@ -16,6 +17,7 @@ function App() {
         <Route path="/hooks" element={<HooksSection/>} />
         <Route path="/api" element={<ApiSection/>} />
         <Route path="/countriesList" element={<CountriesList/>}></Route>
+        <Route path="/countrieSearch" element={<CountriesSearch/>}></Route>
       </Routes>
     </Router>
   );
