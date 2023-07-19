@@ -9,6 +9,7 @@
     width: 100vw;
 
     &__listContainer{
+        margin-top: 30px;
         min-height: 500px;
         width: 900px;
     }
@@ -17,7 +18,35 @@
         background-color: #009189;
         color: white;
         display: flex;
-        justify-content: space-around;
         padding: 10px;
+
+        div{
+            display: flex;
+            padding: 0px 15px;
+            width: 25%;  
+        }
+    }
+
+    &__listBody{
+
+    }
+
+    &__listItem{
+        display: flex;
+        border-bottom: 1px solid #00918a73;
+        justify-content: space-around;
+        margin-top: 10px;
+
+        div{
+            align-items: center;
+            display: flex;
+            padding: 15px 15px;
+            width: 25%;
+        }
+    }
+
+    &__img{
+        height: 55px;
+        width: 85px;
     }
 }

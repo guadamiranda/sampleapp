@@ -26,11 +26,9 @@ const CountriesList = () => {
             capital: countrie.capital,
             continent: countrie.continents[0]})
         )
-
         setCountries(newCountries)
     }
     
-
     useEffect(() => {
         formatTable()
     }, [])
@@ -41,10 +39,18 @@ const CountriesList = () => {
                 <div className='countriesListContainer__listHeader'>
                     {headerTitle.map((title) => <div><b>{title}</b></div>)}
                 </div>
-                <div>
-                    {countries.map((country) => {
-                        {country.name}
-                    })}
+                <div className='countriesListContainer__listBody'>
+                    {countries.map((country) => 
+                    <div className='countriesListContainer__listItem'>
+                        <div>
+                            <img className='countriesListContainer__img' src={country.flag}></img>
+                        </div>
+                        <div>{country.name}</div>
+                        <div>{country.capital}</div>
+                        <div>{country.continent}</div>
+                    </div>   
+                        )}
+                    
                 </div>
             </div>
 
