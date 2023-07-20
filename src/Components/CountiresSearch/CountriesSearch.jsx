@@ -1,72 +1,70 @@
-import { BsSearchHeart } from 'react-icons/bs'
-import Button from "../Button/Button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import './countriesSearch.scss'
 import axios from 'axios';
 
 const CountriesSearch = () => {
     const headerTitle = ['Bandera', 'Nombre', 'Capital', 'Continente']
-    const [country, setCountry] = useState([]) 
+    const [filtredCountries, setFiltredCountries] = useState([])
     const [countryName, setCountryName] = useState('')
-    const [countryExist, setCountryExist] = useState(false)
-
-    const getCountryByName = async (name) => {
+    const [countries, setCountries] = useState([]) 
+    
+    const getCountry = async () => {
         try{
-            const getCountry = await axios(`https://restcountries.com/v3.1/name/${name}?fullText=true`);
-            setCountryExist(true)
-            return getCountry.data
+            const getCountry = await axios('https://restcountries.com/v3.1/all');
+
+            setCountries(getCountry.data)
 
         } catch(error) {
             console.log(error)
-            setCountryExist(false)
         }
     }
 
-    const formatTable = async(name) => {
-        const country = await getCountryByName(name)
-        console.log(countryExist)
+    const formatTable = async() => {
+        const countryFilter = Object.values(countries).filter(country => country.name.common.toLowerCase().includes(countryName))
 
-        if(countryExist === true){
-            const newCountries = {
-                flag: country[0].flags.png,
-                name: country[0].name.common, 
-                capital: country[0].capital,
-                continent: country[0].continents[0]
-            }
-            
-            setCountry(newCountries)
-        }
-        
+        const newCountries = countryFilter.map((countrie) => ({
+            flag: countrie.flags.png,
+            name: countrie.name.common, 
+            capital: countrie.capital,
+            continent: countrie.continents[0]})
+        )
+
+        setFiltredCountries(newCountries)
     }
+
+    useEffect(() => {
+        getCountry()
+    }, [])
+
+    useEffect(() => {
+        formatTable()
+    }, [countryName])
 
     return(
-        <div className='countriesListContainer'>
-            <div className='countriesListContainer__listContainer'>
-                <div onClick={() => getCountryByName} className='countriesListContainer__searchContainer'>
-                    <input className='countriesListContainer__input' placeholder='Ingresa un país a buscar' onChange={e => setCountryName(e.target.value)}></input>
-                    <div onClick={() => formatTable(countryName)}>
-                        <Button nombre='Buscar país' icono={<BsSearchHeart/>}></Button>
-                    </div>
+        <div className='countriesSearchContainer'>
+            <div className='countriesSearchContainer__listContainer'>
+                <div className='countriesSearchContainer__searchContainer'>
+                    <input className='countriesSearchContainer__input' placeholder='Ingresa un país a buscar' onChange={e => setCountryName(e.target.value)}></input>
                 </div>
-                {country.length === 0 ? <></> : 
-                    countryExist? 
-                 <div>
-                    <div className='countriesListContainer__listHeader'>
+                <div>
+                    <div className='countriesSearchContainer__listHeader'>
                         {headerTitle.map((title) => <div><b>{title}</b></div>)}
                     </div>
-                    <div className='countriesListContainer__listBody'>
-                        <div className='countriesListContainer__listItem'>
-                            <div>
-                                <img className='countriesListContainer__img' src={country.flag}></img>
-                            </div>
-                            <div>{country.name}</div>
-                            <div>{country.capital}</div>
-                            <div>{country.continent}</div>
-                        </div>     
-                    </div>
-                </div> :
-                <div className='countriesListContainer__listHeader'>El país no existe o esta mal escrito</div>
-                }
+
+                    <div className='countriesSearchContainer__listBody'>
+                        {filtredCountries.map((country) => 
+                            <div className='countriesSearchContainer__listItem'>
+                                <div>
+                                    <img className='countriesSearchContainer__img' src={country.flag}></img>
+                                </div>
+                                <div>{country.name}</div>
+                                <div>{country.capital}</div>
+                                <div>{country.continent}</div>
+                            </div>   
+                        )}  
+                    </div> 
+                </div> 
+                
             </div>
         </div>
     )
