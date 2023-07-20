@@ -20,7 +20,7 @@ const CountriesSearch = () => {
     }
 
     const formatTable = async() => {
-        const countryFilter = Object.values(countries).filter(country => country.name.common.toLowerCase().includes(countryName))
+        const countryFilter = Object.values(countries).filter(country => country.name.common.toLowerCase().includes(countryName.toLowerCase()))
 
         const newCountries = countryFilter.map((countrie) => ({
             flag: countrie.flags.png,

@@ -19,13 +19,14 @@ const CountriesList = () => {
 
     const formatTable = async() => {
         const countriesList = await getCountries()
-        console.log(countriesList)
+
         const newCountries = countriesList.map((countrie) => ({
             flag: countrie.flags.png,
             name: countrie.name.common, 
             capital: countrie.capital,
             continent: countrie.continents[0]})
         )
+        
         setCountries(newCountries)
     }
     
