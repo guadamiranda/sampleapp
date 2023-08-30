@@ -5,9 +5,13 @@ import './MiComponente.css';
 
 
 function MiComponentePage(){
+    const user = {
+        nombre: 'Mundo',
+        apellido: 'Feliz'
+    }; 
     return (
         <div className='componentes'>
-            <MiComponente nombre='Mundo' />
+            <MiComponente user={user} />
             <Card 
                 image='https://www.w3schools.com/howto/img_avatar.png'
                 name='Poder Judicial'
