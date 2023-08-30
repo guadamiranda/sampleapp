@@ -4,6 +4,7 @@ import CountriesList from './Components/CountiresList/CountriesList';
 import HooksSection from './Components/HooksSection/HooksSection';
 import ApiSection from './Components/ApiSection/ApiSection';
 import HomeComponent from './Components/Home/Home';
+import MiComponentePage from './Pages/MiComponentePage';
 import Navbar from './Components/Navbar/Navbar';
 import './App.css';
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/api" element={<ApiSection/>} />
         <Route path="/countriesList" element={<CountriesList/>}></Route>
         <Route path="/countrieSearch" element={<CountriesSearch/>}></Route>
+        <Route path="/MiComponente" element={<MiComponentePage/>}></Route>
       </Routes>
     </Router>
   );

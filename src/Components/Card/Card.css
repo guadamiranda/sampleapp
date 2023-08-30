@@ -1,0 +1,10 @@
+.Card {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.cardName {
+    font-weight: bold;
+    color: #000;
+    margin-left: 10px;
+}
