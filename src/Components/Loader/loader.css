@@ -1,0 +1,18 @@
+
+.loaderContainer{
+
+    height: 30px;
+    width: 180px;
+}
+
+.loaderContainer div{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
